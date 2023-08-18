@@ -1,9 +1,5 @@
 SHELL := /bin/bash
 
-# TODO:
-# Add voter if addvoterpoll doesn't find voter id
-# Add extra credit methods
-
 .PHONY: help
 help:
 	@echo "Usage make <TARGET>"
