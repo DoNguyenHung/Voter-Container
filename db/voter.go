@@ -32,8 +32,8 @@ type cache struct {
 
 // ToDoItem is the struct that represents a single ToDo item
 type voterPoll struct {
-	PollID   uint
-	VoteDate time.Time
+	PollID   uint      `json:"pollid"`
+	VoteDate time.Time `json:"votedate"`
 }
 
 // VoterList is a type alias for a map of Voters.  The key

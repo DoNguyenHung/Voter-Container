@@ -226,21 +226,12 @@ func (v *VoterAPI) AddVoter(c *gin.Context) {
 	//if the body is not JSON or if the JSON does not match
 	//the struct we are binding to.
 
-	idS := c.Param("id")
-	voterID64, err := strconv.ParseInt(idS, 10, 32)
-	if err != nil {
-		log.Println("Error converting id to int64: ", err)
-		c.AbortWithStatus(http.StatusBadRequest)
-		return
-	}
-
 	if err := c.ShouldBindJSON(&voter); err != nil {
 		log.Println("Error binding JSON: ", err)
 		c.AbortWithStatus(http.StatusBadRequest)
 		return
 	}
 
-	voter.VoterId = uint(voterID64)
 	if err := v.db.AddVoter(voter); err != nil {
 		log.Println("Error adding item: ", err)
 		c.AbortWithStatus(http.StatusInternalServerError)
