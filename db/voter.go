@@ -1,7 +1,7 @@
 // docker compose up
 // load cache
 
-// adding voter poll doesn't work properly
+// Docker repo: https://hub.docker.com/repository/docker/hungdo171/voter-container/general
 
 package db
 
@@ -313,12 +313,12 @@ func (lst *VoterList) GetAllVoters() ([]Voter, error) {
 
 	//Now that we have the DB loaded, lets crate a slice
 	var voterList []Voter
-	var voter Voter
 
 	//Lets query redis for all of the items
 	pattern := RedisKeyPrefix + "*"
 	ks, _ := lst.cacheClient.Keys(lst.context, pattern).Result()
 	for _, key := range ks {
+		var voter Voter
 		err := lst.getItemFromRedis(key, &voter)
 		if err != nil {
 			return nil, err
